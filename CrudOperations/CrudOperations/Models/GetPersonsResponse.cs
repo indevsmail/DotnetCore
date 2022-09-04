@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace CrudOperations.Models
 {
-    public class GetPersonsResponse
+    public class GetPersonsResponse : ResponseBase
     {
-        public bool IsSuccess { get; set; }
-        public string Message { get; set; }
         public List<Person> Persons { get; set; }
     }
 }

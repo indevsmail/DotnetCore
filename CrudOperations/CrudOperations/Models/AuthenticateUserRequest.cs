@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace CrudOperations.Models
 {
-    public class DeletePersonResponse : ResponseBase
+    public class AuthenticateUserRequest
     {
+        public string UserId { get; set; }
+        public string Password { get; set; }
     }
 }

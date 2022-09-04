@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace CrudOperations.Models
 {
-    public class DeletePersonResponse : ResponseBase
+    public class ResponseBase
     {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
     }
 }

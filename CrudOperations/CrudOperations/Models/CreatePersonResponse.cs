@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 
 namespace CrudOperations.Models
 {
-    public class CreatePersonResponse
+    public class CreatePersonResponse : ResponseBase
     {
-        public bool IsSuccess { get; set; }
-        public string Message { get; set; }
     }
 }

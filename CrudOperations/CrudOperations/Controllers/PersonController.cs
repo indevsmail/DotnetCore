@@ -1,5 +1,6 @@
 ﻿using CrudOperations.Models;
 using CrudOperations.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ namespace CrudOperations.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes =Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
     public class PersonController : ControllerBase
     {
         private readonly IPersonService _personService;
@@ -19,6 +21,7 @@ namespace CrudOperations.Controllers
             _personService = personService;
         }
         [HttpPost]
+        [Authorize(Roles ="Admin")]
         [Route("CreatePerson")]
         public async Task<IActionResult> CreatePerson(CreatePersonRequest request)
         {
@@ -33,10 +36,7 @@ namespace CrudOperations.Controllers
                 response.IsSuccess = false;
                 response.Message = ex.Message;
             }
-            if (response.IsSuccess)
-                return Ok(response);
-            else
-                return NotFound(response);
+            return response.IsSuccess ? Ok(response) : (IActionResult)NotFound(response);
         }
 
         [HttpGet]
@@ -56,6 +56,7 @@ namespace CrudOperations.Controllers
             return response.IsSuccess ? Ok(response) : (IActionResult)NotFound(response);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("UpdatePerson")]
         public async Task<IActionResult> UpdatePerson(UpdatePersonRequest request)
         {
@@ -72,6 +73,7 @@ namespace CrudOperations.Controllers
             return response.IsSuccess ? Ok(response) : (IActionResult)NotFound(response);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("DeletePerson")]
         public async Task<IActionResult> DeletePerson(DeletePesronRequest request)
         {
