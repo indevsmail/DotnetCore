@@ -1,0 +1,13 @@
+{
+  "components": [
+    {
+      "type": "CrudOperations.Repository.SecurityRepository, CrudOperations.Repository",
+      "services": [
+        {
+          "type": "CrudOperations.Repository.ISecurityRepository, CrudOperations.Repository"
+        }
+      ],
+      "instanceScope": "per-lifetime-scope"
+    }
+  ]
+}
